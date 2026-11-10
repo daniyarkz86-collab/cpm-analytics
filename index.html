@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Финансовая аналитика ЦПМ по филиалам, тренерам и охвату педагогов">
+  <title>ЦПМ · Финансовая аналитика</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="ЦПМ аналитика">
+        <img class="brand-logo" src="nis-logo-official.png" alt="NIS">
+      </a>
+      <nav class="tabs" aria-label="Разделы отчёта">
+        <button class="tab is-active" data-tab="overview"><i data-lucide="layout-dashboard"></i><span>Обзор</span></button>
+        <button class="tab" data-tab="branches"><i data-lucide="building-2"></i><span>Филиалы</span></button>
+        <button class="tab" data-tab="trainers"><i data-lucide="users-round"></i><span>Тренеры</span></button>
+        <button class="tab" data-tab="coverage"><i data-lucide="map-pinned"></i><span>Охват</span></button>
+      </nav>
+      <div class="period-pill"><i data-lucide="calendar-days"></i><span>Октябрь 2026</span></div>
+    </header>
+
+    <main>
+      <section class="panel is-active" id="overview" aria-labelledby="overview-title">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Управленческий отчёт · 15 филиалов</p>
+            <h1 id="overview-title">Финансы, эффективность<br>и охват <em>в одном контуре</em></h1>
+            <p class="hero-copy">Сводный взгляд на экономику сети, вклад тренеров и масштаб курсов по регионам Казахстана.</p>
+          </div>
+          <div class="hero-status" id="hero-status"></div>
+        </div>
+        <div class="kpi-grid" id="overview-kpis"></div>
+        <div class="grid grid-main">
+          <article class="card chart-card">
+            <div class="card-head">
+              <div><p class="overline">Финансовый результат</p><h2>Прибыль по филиалам</h2></div>
+              <span class="legend"><i class="dot positive"></i> прибыль <i class="dot negative"></i> убыток</span>
+            </div>
+            <div class="profit-chart" id="overview-profit-chart"></div>
+          </article>
+          <article class="card insight-card" id="key-insight"></article>
+        </div>
+        <div class="grid grid-thirds" id="overview-bottom"></div>
+      </section>
+
+      <section class="panel" id="branches" aria-labelledby="branches-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Экономика сети</p><h1 id="branches-title">Филиалы</h1><p>Сравнение доходов, расходов и финансовой выгоды.</p></div>
+          <div class="segmented" id="branch-metric">
+            <button class="is-active" data-metric="profit">Прибыль</button>
+            <button data-metric="revenue">Доход</button>
+            <button data-metric="margin">Маржа</button>
+          </div>
+        </div>
+        <div class="branch-summary" id="branch-summary"></div>
+        <div class="branch-workspace">
+          <article class="card branch-ranking-card">
+            <div class="card-head"><div><p class="overline">Рейтинг</p><h2 id="branch-ranking-title">Топ филиалов по прибыли</h2></div><span class="source-note">Нажмите строку для деталей</span></div>
+            <div class="ranking-list" id="branch-ranking"></div>
+          </article>
+          <div class="branch-detail card" id="branch-detail"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="trainers" aria-labelledby="trainers-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Доходность команды</p><h1 id="trainers-title">Эффективность тренеров</h1><p>Доход, фонд оплаты труда и чистый вклад каждого тренера.</p></div>
+          <label class="select-wrap"><i data-lucide="map-pin"></i><select id="trainer-branch-filter" aria-label="Фильтр по филиалу"></select><i data-lucide="chevron-down"></i></label>
+        </div>
+        <div class="kpi-grid compact" id="trainer-kpis"></div>
+        <div class="grid grid-main trainers-grid">
+          <article class="card">
+            <div class="card-head"><div><p class="overline">Финансовая выгода</p><h2>Рейтинг тренеров</h2></div><span class="source-note">Доход − оплата труда</span></div>
+            <div class="trainer-table-wrap"><table class="data-table"><thead><tr><th>#</th><th>Тренер</th><th>Филиал</th><th>Доход</th><th>ФОТ</th><th>Выгода</th><th>ROI</th></tr></thead><tbody id="trainer-table"></tbody></table></div>
+          </article>
+          <article class="card" id="trainer-branch-chart-card">
+            <div class="card-head"><div><p class="overline">По филиалам</p><h2>Вклад команды</h2></div></div>
+            <div class="team-bars" id="trainer-branch-chart"></div>
+          </article>
+        </div>
+        <p class="method-note"><i data-lucide="info"></i> Эффективность рассчитана только по тренерам. Директора филиалов не включены, чтобы не смешивать управленческие и тренерские роли.</p>
+      </section>
+
+      <section class="panel" id="coverage" aria-labelledby="coverage-title">
+        <div class="section-head">
+          <div><p class="eyebrow">Образовательный эффект · 2026</p><h1 id="coverage-title">Охват педагогов</h1><p>Количество педагогов, прошедших курсы, и потенциал регионов.</p></div>
+          <div class="coverage-badge"><i data-lucide="graduation-cap"></i><span id="coverage-badge-value"></span></div>
+        </div>
+        <div class="kpi-grid compact" id="coverage-kpis"></div>
+        <div class="grid coverage-layout">
+          <article class="card">
+            <div class="card-head"><div><p class="overline">Региональный рейтинг</p><h2>Охват курсов</h2></div><span class="source-note">Доля от числа педагогов</span></div>
+            <div class="coverage-list" id="coverage-list"></div>
+          </article>
+          <article class="card coverage-focus" id="coverage-focus"></article>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>ЦПМ · управленческая аналитика</span><span>Источник: предоставленные XLSX-файлы · обновлено <span id="updated-at"></span></span></footer>
+  </div>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
