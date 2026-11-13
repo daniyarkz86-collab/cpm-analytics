@@ -11,7 +11,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-shell">
+  <section class="access-gate" id="access-gate" aria-labelledby="access-title">
+    <form class="access-card" id="access-form">
+      <img src="nis-logo-official.png" alt="NIS" class="access-logo">
+      <p class="eyebrow">Закрытый финансовый портал</p>
+      <h1 id="access-title">Вход по коду доступа</h1>
+      <p>Введите шестизначный код. Филиал будет автоматически перенаправлен только на свою страницу.</p>
+      <label for="access-pin">Код доступа</label>
+      <input id="access-pin" name="pin" type="password" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="••••••" required>
+      <button type="submit">Войти</button>
+      <span class="access-error" id="access-error" role="alert"></span>
+    </form>
+  </section>
+  <div class="app-shell" id="admin-dashboard" hidden>
     <header class="topbar">
       <a class="brand" href="#" aria-label="ЦПМ аналитика">
         <img class="brand-logo" src="nis-logo-official.png" alt="NIS">
@@ -22,7 +34,10 @@
         <button class="tab" data-tab="trainers"><i data-lucide="users-round"></i><span>Тренеры</span></button>
         <button class="tab" data-tab="coverage"><i data-lucide="map-pinned"></i><span>Охват</span></button>
       </nav>
-      <div class="period-pill"><i data-lucide="calendar-days"></i><span>Октябрь 2026</span></div>
+      <div class="topbar-actions">
+        <div class="period-pill"><i data-lucide="calendar-days"></i><span>Октябрь 2026</span></div>
+        <button class="admin-logout" id="admin-logout" type="button"><i data-lucide="log-out"></i><span>Выйти</span></button>
+      </div>
     </header>
 
     <main>
@@ -51,10 +66,11 @@
 
       <section class="panel" id="branches" aria-labelledby="branches-title">
         <div class="section-head">
-          <div><p class="eyebrow">Экономика сети</p><h1 id="branches-title">Филиалы</h1><p>Сравнение доходов, расходов и финансовой выгоды.</p></div>
+          <div><p class="eyebrow">Экономика сети</p><h1 id="branches-title">Финансовая эффективность филиалов за октябрь</h1><p>Сравнение доходов, расходов и финансовой выгоды.</p></div>
           <div class="segmented" id="branch-metric">
             <button class="is-active" data-metric="profit">Прибыль</button>
             <button data-metric="revenue">Доход</button>
+            <button data-metric="expenses">Расход</button>
             <button data-metric="margin">Маржа</button>
           </div>
         </div>
@@ -77,7 +93,7 @@
         <div class="grid grid-main trainers-grid">
           <article class="card">
             <div class="card-head"><div><p class="overline">Финансовая выгода</p><h2>Рейтинг тренеров</h2></div><span class="source-note">Доход − оплата труда</span></div>
-            <div class="trainer-table-wrap"><table class="data-table"><thead><tr><th>#</th><th>Тренер</th><th>Филиал</th><th>Доход</th><th>ФОТ</th><th>Выгода</th><th>ROI</th></tr></thead><tbody id="trainer-table"></tbody></table></div>
+            <div class="trainer-table-wrap"><table class="data-table"><thead><tr><th>#</th><th>Тренер</th><th>Филиал</th><th>Выгода</th><th>Окупаемость</th></tr></thead><tbody id="trainer-table"></tbody></table></div>
           </article>
           <article class="card" id="trainer-branch-chart-card">
             <div class="card-head"><div><p class="overline">По филиалам</p><h2>Вклад команды</h2></div></div>
@@ -105,7 +121,8 @@
 
     <footer><span>ЦПМ · управленческая аналитика</span><span>Источник: предоставленные XLSX-файлы · обновлено <span id="updated-at"></span></span></footer>
   </div>
+  <script src="admin-payload.js"></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-  <script src="script.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
