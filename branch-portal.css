@@ -43,7 +43,16 @@ h2 { font:600 21px Unbounded,Arial,sans-serif; }
 .team-stat span { display:block; color:var(--muted); font-size:13px; }
 .team-stat strong { display:block; margin-top:7px; font:600 18px Unbounded,Arial,sans-serif; }
 .trainer-list { display:grid; gap:8px; }
-.trainer { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 0; border-top:1px solid var(--line); }
+.trainer { display:grid; gap:9px; padding:13px 0; border-top:1px solid var(--line); }
+.trainer-name { font-weight:700; line-height:1.35; }
+.trainer-finance { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+.trainer-amount { display:flex; align-items:baseline; gap:5px; padding:6px 9px; border-radius:9px; background:#f3f1ec; white-space:nowrap; }
+.trainer-amount small { color:var(--muted); font-size:11px; font-weight:700; }
+.trainer-amount strong { color:var(--ink); font-size:12px; }
+.trainer-amount.benefit { background:#eef3e6; }
+.trainer-amount.benefit.positive strong { color:var(--green2); }
+.trainer-amount.benefit.negative { background:#f6e8e4; }
+.trainer-amount.benefit.negative strong { color:var(--red); }
 .badge { padding:6px 9px; border-radius:9px; background:#eff6e4; color:var(--green2); font-size:12px; font-weight:800; }
 .badge.bad { background:#f6e2dd; color:var(--red); }
 .privacy-note { margin-top:18px; color:var(--muted); font-size:13px; line-height:1.55; }
